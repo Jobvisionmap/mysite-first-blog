@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+{% load static %}
 <head>
 <meta name="KUWV OB Office" content="金沢大学ワンダーフォーゲル部　OB会事務局WEBです。OB名簿・OB会誌やまざとなどを見ることができます"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -15,7 +16,7 @@ body{background-color:#E8FFF0; background font-size:12pt; text-align:left;
 font-family:メイリオ,sans-serif;line-height:1.2em}
 td{font-size:11pt;line-height:1.2em;}
 
-td.menu0{background-color:#008080;color:#EFFFF0;background-image:url("static/himawarik.gif");
+td.menu0{background-color:#008080;color:#EFFFF0;background-image:url("{% static 'himawarik.gif' %}");
 border-left:1 #FFFFFF solid;border-right:1 #808040 solid}
 .menu1{color:white;border-left:1 #FFFFFF solid;border-right:1 #808040 solid}
 .midasi{text-align:center;line-height:1.2em;font-size:16pt;color:#FFFFFF;background-color:#008080;padding:2}
@@ -36,7 +37,7 @@ border-left:1 #FFFFFF solid;border-right:1 #808040 solid}
 		 <tbody><tr>
 			  <td align="left" width="200" height="25">
 
-				<img src="static/kuwvobofficeimg.jpg" style="max-height:200px"/>
+				<img src="{% static 'kuwvobofficeimg.jpg' %}" style="max-height:200px"/>
 
 			   <br><h2>金沢大学ワンダーフォーゲル部　OB会事務局</h2>
 			  </td>
@@ -60,21 +61,32 @@ border-left:1 #FFFFFF solid;border-right:1 #808040 solid}
 <h3>金沢大学WV部OB名簿</h3>
 
 <br>
-<a href="static/KUWV_OB_LIST.pdf" class="menuL">OB名簿閲覧（パスワード入力必要）</a>
+<a href="{% static 'KUWV_OB_LIST.pdf' %}" class="menuL">OB名簿閲覧（パスワード入力必要）</a>
 　　2019年5月4日修正
 <br><br>
-OB名簿修正依頼される方は修正箇所をメールで連絡お願いします。<br>
+OB名簿修正依頼される方はメールで連絡お願いします。<br>
 mail: jobvisionmap@gmail.com
 <br><br>
 <h3>やまざとカラー版</h3><br>
-<a href="static/2018やまざと33号カラー版小.pdf" class="menuL">2018やまざと33号閲覧</a>
+<a href="{% static '2018やまざと33号カラー版小.pdf' %}" class="menuL">2018やまざと33号閲覧</a>
 <br><br>
 
-
-<br><br><br>
-
-　　　OB会事務局e-mail:  jobvisionmap@gmail.com<br>
 <br>
+
+　　　<h2>OB会事務局からの連絡
+<br>
+</h2>
+<hr>
+
+ {% for post in posts %}
+            <div>
+                <p>記載日時: {{ post.published_date }}</p>
+                <h3><a href="">{{ post.title }}</a></h3>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+
+<br><br>
       Copyright KUWV_OB_Office All Rights Reserved. 
 </body></html>
 <!-- ************************************************************************** -->
